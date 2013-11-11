@@ -1,0 +1,69 @@
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 20px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-bottom: 10px;
+}
+
+h2 {
+	font-size:24px;
+}
+
+h3 {
+	font-size:18px;
+	border-bottom:2px solid #000;
+	padding-bottom:6px;
+}
+
+h4 {
+	font-size:12px;
+	margin-bottom: 0px;
+}
+
+p {
+	margin: 0 0 10px 0;
+	line-height: 150%;
+}
+
+hr {
+	color: #000;
+	background-color: #000;
+	height: 2px;
+}
+
+.imgleft {
+	margin:5px;
+	margin-left:0px;
+	float:left;
+}
+
+.imgright {
+	margin:5px;
+	margin-left:10px;
+	margin-right:0px;
+	float:right;
+}
+
+li {
+	line-height: 150%;
+}
+
+ul, ol {
+	margin-top:0px;
+}
+
+a:link {
+	color: #000;
+}
+a:visited {
+  color: #000;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	color: #000;
+}	

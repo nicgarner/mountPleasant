@@ -1,0 +1,316 @@
+.tiles {
+	width:100%;
+	clear:both;
+}
+
+.tiles .tile {
+	padding:10px;
+	margin:0 14px 15px 0;
+	float:left;
+}
+.tiles .full {
+	width:696px;
+}
+.tiles .half {
+	width:331px;
+}
+.tiles .third {
+	width:209px;
+}
+.tiles .fourth {
+	width:148px;
+}
+.tiles .fifth {
+	width:112px;
+}
+.tiles .sixth {
+	width:103px;
+  padding:2px;
+}
+
+.tiles .two-fifths {
+	width:258px;
+}
+.tiles .three-fifths {
+	width:404px;
+}
+.tiles .five-sixths {
+	width:577px;
+  padding:2px;
+}
+.tiles .two-thirds {
+	width:452px;
+}
+
+.tiles a .tile p {
+  text-decoration:none;
+}
+
+.tiles .light_green {
+	background:#CCE6BB;
+}
+.tiles .dark_green {
+	background:#B4D5B3;
+}
+
+.tiles .tile h4 {
+	font-size:1.3em;
+	margin:0 0 5px 0;
+}
+
+.tiles .tile img {
+	float:left;
+}
+
+.tiles .tile ul {
+	float:left;
+	margin:0 25px 0 0;
+	padding:0;
+}
+
+.tiles .tile ul li {
+	list-style:none;
+	margin:0 0 8px 0;
+	line-height:140%;
+}
+
+.tiles .tile p.end {
+	margin:0;
+}
+
+.tiles .end {
+	margin-right:0 !important;
+}
+
+.tiles .right {
+	float:right !important;
+	margin-left:30px !important;
+}
+
+.tiles .first {
+	clear:left;
+}
+
+.tiles .event_tile {
+	width:154px;
+	height:98px;
+	float:left;
+	margin:0 6px 10px 0;
+	padding:7px 10px 7px;
+	border-radius:10px;
+	font-size:0.9em;
+  background:no-repeat;
+  overflow:hidden;
+}
+.tiles .event_tile.cancelled {
+  background-image:url('images/layout/youth_cancelled_box.gif');
+}
+.tiles .event_tile h4 {
+	margin:0 0 4px;
+	font-size:1.6em;
+	color:#000;
+}
+.tiles .event_tile p {
+	margin:0 0 5px;
+}
+.tiles .event_tile.cancelled  h4 {
+	color:#A5A5A5 !important;
+}
+.tiles .event_tile.cancelled  p {
+	color:#A5A5A5;
+}
+.tiles .event_tile.cancelled  .cancel_notice {
+	position:absolute;
+  z-index:10;
+}
+.tiles .event_tile  .tools {
+	position:absolute;
+  z-index:20;
+  background:;
+  width:20px;
+  margin:42px 0 0 138px;
+}
+
+
+
+.youth_activities {
+  float:left;
+  margin:10px 0;
+}
+.youth_activities .activity {
+  float:left;
+  margin:0;
+  background:no-repeat top left;
+}
+.youth_activities .activity .programme {
+  font-size:1.2em;
+  font-weight:bold;
+  margin:0 0 8px;
+  text-align:center;
+}
+.youth_activities .activity h4 {
+  font-size:1.9em;
+  margin:0 0 4px;
+}
+.youth_activities .activity a {
+  color:#000;
+}
+.youth_activities .activity.identity {
+  background-image:url('images/layout/id_piece.gif');
+  width:253px;
+  height:248px;
+  padding:60px 50px 50px 55px;
+}
+.youth_activities .activity.identity h4 {
+    color:#e66525;
+}
+.youth_activities .activity.awe {
+  background-image:url('images/layout/awe_piece.gif');
+  width:288px;
+  height:283px;
+  padding:15px 15px 60px 55px;
+}
+.youth_activities .activity.awe h4 {
+    color:#3b5ca3;
+}
+.youth_activities .activity.rs {
+  background-image:url('images/layout/rs_piece.gif');
+  width:249px;
+  height:283px;
+  padding:60px 60px 15px 10px;
+}
+.youth_activities .activity.rs h4 {
+    color:#01782d;
+}
+.youth_activities .activity.life {
+  background-image:url('images/layout/life_piece.gif');
+  width:293px;
+  height:287px;
+  padding:10px 55px 10px 10px;
+}
+.youth_activities .activity.life h4 {
+    color:#e5ac00;
+}
+.youth_activities .activity.wh {
+  background-image:url('images/layout/wh_piece.gif');
+  width:254px;
+  height:287px;
+  padding:10px 49px 10px 55px;
+}
+.youth_activities .activity.wh h4 {
+    color:#71317D;
+}
+.youth_activities .activity.mentors {
+  background-image:url('images/layout/mentor_piece.gif');
+  width:293px;
+  height:288px;
+  padding:15px 55px 55px 10px;
+}
+.youth_activities .activity.mentors h4 {
+    color:#00846b;
+}
+.youth_activities .activity.mentors .indent {
+  padding-left:40px;
+}
+
+.activities a {
+  text-decoration:none;
+}
+.activities .tab {
+  height:40px;
+  font-size:1.2em;
+  text-align:center;
+  font-weight:bold;
+  width:107px;
+  padding:4px 2px;
+  border:0;
+  clear:none;
+  margin:5px 8px 15px 0;
+  line-height:140%;
+}
+.activities .tab.worship {
+  width:144px;
+}
+.activities .tab.discipleship {
+  padding-top:13px;
+  height:31px;
+}
+.activities .tab.youth {
+  width:80px;
+  padding-top:13px;
+  height:31px;
+}
+.activities .tab.community {
+  padding-top:13px;
+  height:31px;
+}
+
+.activities .tile {
+  border-radius:10px;
+  -moz-box-shadow: 4px 4px 3px #888;
+  -webkit-box-shadow: 4px 4px 3px #888;
+  box-shadow: 4px 4px 3px #888;
+  margin-bottom:16px;
+}
+.activities .tile ul {
+  margin:0 0 0 5px;
+  float:left;
+  width:211px;
+}
+.activities .tile.community ul {
+  width:289px;
+}
+.activities .tile.mission ul {
+  width:143px;
+}
+.activities .tile ul li {
+  float:left;
+  margin:0 0 5px 5px;
+}.activities .tile ul li a {
+  font-weight:bold;
+  padding:3px 5px 5px;
+  float:left;
+}
+.activities .tile h4 {
+  font-size:1.4em;
+  margin:0 0 0.7em;
+}
+.activities .tile img {
+  float:left;
+}
+
+.worship { background:#FF9; }
+.worship h4, a.worship { color:#960 !important; }
+a.worship:hover, .worship ul li:hover { background:#EB8; }
+.worship ul li { background:#960; }
+.worship ul li a { color:#FF9 !important; }
+
+.discipleship { background:#CF9; }
+.discipleship h4, .discipleship a, a.discipleship { color:#060 !important; }
+a.discipleship:hover, .discipleship ul li:hover { background:#9C6; }
+.discipleship ul li { background:#060; }
+.discipleship ul li a { color:#CF9 !important; }
+
+.family { background:#BDF; }
+.family h4, .family a, a.family { color:#066 !important; }
+a.family:hover, .family ul li:hover { background:#6CC; }
+.family ul li { background:#066; }
+.family ul li a { color:#BDF !important; }
+
+.youth { background:#9CF; }
+.youth h4, .youth a, a.youth { color:#006 !important; }
+a.youth:hover, .youth ul li:hover { background:#69C; }
+.youth ul li { background:#006; }
+.youth ul li a { color:#9CF !important; }
+
+.community { background:#FCF; height:151px; }
+.community h4, .community a, a.community { color:#606 !important; }
+a.community:hover, .community ul li:hover { background:#C6C; }
+.community ul li { background:#606; }
+.community ul li a { color:#FCF !important; }
+
+.mission { background:#FCC; }
+.mission h4, .mission a, a.mission { color:#900 !important; }
+a.mission:hover, .mission ul li:hover { background:#F99; }
+.mission ul li { background:#900; }
+.mission ul li a { color:#FCC !important; }
