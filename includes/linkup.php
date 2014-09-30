@@ -218,9 +218,13 @@
 	echo '</div>';
 	
 	if (!$_POST['submit']) {
-		$query = "SELECT title, content, author, category, private, date FROM linkup WHERE article_id='$id'";
-			$result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
-			while($row = mysql_fetch_object($result)) {
+		$query  = "SELECT title, content, author, category, private, date ";
+    $query .= "FROM linkup WHERE article_id='$id'";
+		if (!isset($_COOKIE["cookie:mpbcadmin"])) {
+      $query .= " AND private = '0' ";
+    }
+    $result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
+		while($row = mysql_fetch_object($result)) {
 			$title    = $row->title;
 			$story    = $row->content;
 			$author   = $row->author;
@@ -279,79 +283,85 @@
 			echo '<div class="label">Title:</div> <input name="title" maxlength="60" size="40" value="'.$title.'" /><br class="clear" />';
 		}
 		else {
-			echo '<h3>'.stripslashes($title).'</h3>';
+			if ($title == "") {
+        echo '<h3>Article not found</h3>';
+        echo '<p>Whoops, something\'s gone wrong - the link you\'ve followed doesn\'t seem to be available. You might need to <a href="login">log in</a> to read it. Use the links on the left to read more articles.</p>';
+      }
+      else {
+        echo '<h3>'.stripslashes($title).'</h3>';
 			
-			echo '<div class="options"><div class="print"><a href="print.php?article='.$id.'" ';
-			echo 'title="printer friendly version (this article)">';
-			echo '<img src="images/icons/print.jpg" class="img_button" border="0" /></a></div>';
-			
-			// This code produces a link to the previous page, the title of the current page and a link to the next page, as an alternative to displaying the whole contents on the left hand side.
-			$query  = "SELECT linkup.article_id, linkup.title, DATE_FORMAT(linkup.date,'%M') as month, ";
-			$query .= "DATE_FORMAT(linkup.date,'%Y') as year, linkup.category, linkup_categories.name FROM linkup, linkup_categories ";
-			$query .= "WHERE linkup.category = linkup_categories.linkup_category_id AND linkup.date = '$date' AND deleted = 0 ";
-			if (!isset($_COOKIE["cookie:mpbcadmin"])) {
-				$query .= "AND linkup.private = '0' ";
-			}
-			$query .= "ORDER BY linkup_categories.priority ASC";
-			$result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
-			
-			$n = 0;
-			
-			while($row = mysql_fetch_object($result)) {
-				$n++;
-				$month = $row->month;
-				$year = $row->year;
-				if ($id == $row->article_id) {
-					$a = $n;
-				}
-			}
-			
-			$result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
-		
-			$n = 1;
-		
-			if (mysql_num_rows($result) > 0) {	
-				while($row = mysql_fetch_object($result)) {		
-					if ($n == $a-1) {
-						if ($row->category == 2 || $row->category == 11 || $row->category == 3) {
-							echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
-							echo 'title="Previous page - '.$row->title.'">';
-							echo '<img src="images/layout/previous2.jpg" class="img_button" border="0" /></a></div>';
-						}
-						else {
-							echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
-							echo 'title="Previous page - '.$row->name.'">';
-							echo '<img src="images/layout/previous2.jpg" class="img_button" border="0" /></a></div>';
-						}
-						$back = 1;
-					}
-					elseif ($n == $a+1) {
-						if ($row->category == 2 || $row->category == 11 || $row->category == 3) {
-							if ($back == NULL) {
-								echo '<div class="selected">';
-								echo '<img title="You are at the first page." src="images/layout/previous2_disabled.jpg" ';
-								echo 'border="0" /></div>';
-							}
-							echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
-							echo 'title="Next page - '.$row->title.'">';
-							echo '<img class="img_button" src="images/layout/next2.jpg" class="img_button" border="0" /></a></div>';
-						}
-						else {
-							echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
-							echo 'title="Next page - '.$row->name.'">';
-							echo '<img class="img_button" src="images/layout/next2.jpg" border="0" /></a></div>';
-						}
-						$forward = 1;
-					}
-					$n++;
-				}
-				if ($forward == NULL) {
-					echo '<div class="selected">';
-					echo '<img title="You are at the last page." src="images/layout/next2_disabled.jpg" ';
-					echo 'border="0" /></div>';
-				}
-			} echo '</div>';
-		}
+        echo '<div class="options"><div class="print"><a href="print.php?article='.$id.'" ';
+        echo 'title="printer friendly version (this article)">';
+        echo '<img src="images/icons/print.jpg" class="img_button" border="0" /></a></div>';
+        
+        // This code produces a link to the previous page, the title of the current page and a link to the next page, as an alternative to displaying the whole contents on the left hand side.
+        $query  = "SELECT linkup.article_id, linkup.title, DATE_FORMAT(linkup.date,'%M') as month, ";
+        $query .= "DATE_FORMAT(linkup.date,'%Y') as year, linkup.category, linkup_categories.name FROM linkup, linkup_categories ";
+        $query .= "WHERE linkup.category = linkup_categories.linkup_category_id AND linkup.date = '$date' AND deleted = 0 ";
+        if (!isset($_COOKIE["cookie:mpbcadmin"])) {
+          $query .= "AND linkup.private = '0' ";
+        }
+        $query .= "ORDER BY linkup_categories.priority ASC";
+        $result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
+        
+        $n = 0;
+        
+        while($row = mysql_fetch_object($result)) {
+          $n++;
+          $month = $row->month;
+          $year = $row->year;
+          if ($id == $row->article_id) {
+            $a = $n;
+          }
+        }
+        
+        $result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
+      
+        $n = 1;
+      
+        if (mysql_num_rows($result) > 0) {	
+          while($row = mysql_fetch_object($result)) {		
+            if ($n == $a-1) {
+              if ($row->category == 2 || $row->category == 11 || $row->category == 3) {
+                echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
+                echo 'title="Previous page - '.$row->title.'">';
+                echo '<img src="images/layout/previous2.jpg" class="img_button" border="0" /></a></div>';
+              }
+              else {
+                echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
+                echo 'title="Previous page - '.$row->name.'">';
+                echo '<img src="images/layout/previous2.jpg" class="img_button" border="0" /></a></div>';
+              }
+              $back = 1;
+            }
+            elseif ($n == $a+1) {
+              if ($row->category == 2 || $row->category == 11 || $row->category == 3) {
+                if ($back == NULL) {
+                  echo '<div class="selected">';
+                  echo '<img title="You are at the first page." src="images/layout/previous2_disabled.jpg" ';
+                  echo 'border="0" /></div>';
+                }
+                echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
+                echo 'title="Next page - '.$row->title.'">';
+                echo '<img class="img_button" src="images/layout/next2.jpg" class="img_button" border="0" /></a></div>';
+              }
+              else {
+                echo '<div class="selected"><a href="'.$PHP_SELF.'?article='.$row->article_id.'" ';
+                echo 'title="Next page - '.$row->name.'">';
+                echo '<img class="img_button" src="images/layout/next2.jpg" border="0" /></a></div>';
+              }
+              $forward = 1;
+            }
+            $n++;
+          }
+          if ($forward == NULL) {
+            echo '<div class="selected">';
+            echo '<img title="You are at the last page." src="images/layout/next2_disabled.jpg" ';
+            echo 'border="0" /></div>';
+          }
+        } echo '</div>';
+      }
+    }
 			
 		if ($action == 'edit')
 			echo '<div class="label">Author:</div> <input name="author" maxlength="60" size="40" value="'.$author.'" /><br class="clear" />';

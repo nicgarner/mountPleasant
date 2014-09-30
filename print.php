@@ -51,6 +51,9 @@ if (!$lid == NULL) {
 elseif (!$id == NULL) {
 	$query  = "SELECT DATE_FORMAT(date, '%m') as month, DATE_FORMAT(date, '%Y') as year, deleted FROM linkup ";
 	$query .= "WHERE article_id = $id AND deleted = '0'";
+  if (!isset($_COOKIE["cookie:mpbcadmin"])) {
+		$query .= " AND linkup.private = '0'";
+	}
 	$result = mysql_query($query) or die ('Error in query: $query. ' . mysql_error());
 	
 	if (mysql_num_rows($result) > 0) {
