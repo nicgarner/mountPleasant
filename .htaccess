@@ -1,0 +1,69 @@
+Options +FollowSymlinks
+
+#####################################
+# Setup Mod Rewrite
+#####################################
+RewriteEngine On
+
+#RewriteLog "/tmp/rewrite.log"
+#RewriteLogLevel 9
+
+# Do not enable rewriting for files or directories that exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+AddType application/x-httpd-php-source .phps
+
+RewriteCond %{HTTP_HOST}   ^mountpleasantchurch\.com [NC]
+RewriteRule ^(.*)$         http://www.mountpleasantchurch.com/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST}   ^beautifulgrace\.org\.uk [NC]
+RewriteRule ^(.*)$         http://www.beautifulgrace.org.uk/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST}   ^reachout-northampton\.org\.uk [NC]
+RewriteRule ^(.*)$         http://www.reachout-northampton.org.uk/$1 [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^(.*)/$ [NC]
+RewriteCond %{REQUEST_URI} !(^/$) [NC]
+RewriteCond %{REQUEST_URI} !(^/resources/$) [NC]
+RewriteCond %{REQUEST_URI} !(^/biblefestival/$) [NC]
+RewriteCond %{REQUEST_URI} !(^/reachout/$) [NC]
+RewriteRule ^(.*)/$        /$1 [L,R=301]
+
+# exclusions
+RewriteCond %{REQUEST_URI} !(^.+\.css$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.dir$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.ico$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.gif$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.jpg$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.png$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.doc$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.xls$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.pdf$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.swf$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.htm$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.html$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.xml$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.php$) [NC]
+#RewriteCond %{REQUEST_URI} !(^.+\.phps$) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.js$) [NC]
+RewriteCond %{REQUEST_URI} !(^/phpmyadmin) [NC]
+RewriteCond %{REQUEST_URI} !(^/HymnShow) [NC]
+RewriteCond %{REQUEST_URI} !(^/awe) [NC]
+RewriteCond %{REQUEST_URI} !(^/resources/.+) [NC]
+RewriteCond %{REQUEST_URI} !(^/media/) [NC]
+RewriteCond %{REQUEST_URI} !(^/stream/) [NC]
+RewriteCond %{REQUEST_URI} !(^/jwplayer) [NC]
+RewriteCond %{REQUEST_URI} !(^/biblefestival/) [NC]
+RewriteCond %{REQUEST_URI} !(^/reachout/) [NC]
+RewriteCond %{REQUEST_URI} !(^/jos/) [NC]
+RewriteCond %{REQUEST_URI} !(^/tickethour/) [NC]
+RewriteCond %{REQUEST_URI} !(^/churchinfo) [NC]
+RewriteCond %{REQUEST_URI} !(^/files/) [NC]
+RewriteCond %{REQUEST_URI} !(^/images/) [NC]
+RewriteCond %{REQUEST_URI} !(^/fonts/) [NC]
+RewriteCond %{REQUEST_URI} !(^.+\.m3u$) [NC]
+RewriteCond %{REQUEST_URI} !(^/beautifulgrace) [NC]
+RewriteCond %{HTTP_HOST} !(beautifulgrace)
+# pass all except above rules through index.php
+RewriteRule ^.*$ index.php [L]

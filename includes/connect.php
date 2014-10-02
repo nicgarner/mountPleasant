@@ -3,7 +3,7 @@
 // $db = mysql_connect('localhost', 'root', '');
 
 // for live server
-$db = mysql_connect('localhost', anonymised, anonymised);
+$db = mysql_connect('localhost', 'anonymised', 'anonymised');
 
 /* if there is a problem connecting to the DB - tell me and display
 any error messages given then stop the program gracefully */
